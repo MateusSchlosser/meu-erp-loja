@@ -17,8 +17,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- CREDENCIAIS DE ACESSO AO SISTEMA ---
-USUARIO_SISTEMA = "admin"
-SENHA_SISTEMA = "1234"
+USUARIO_SISTEMA = "MateusDeLorenzi"
+SENHA_SISTEMA = "Ms10046830901$"
 
 # --- GERENCIAMENTO DE ESTADO ---
 if 'logado' not in st.session_state:
@@ -33,7 +33,7 @@ def get_connection():
     # Monta a string de conexão baseada nos Secrets do Streamlit
     try:
         db_conf = st.secrets["connections"]["postgresql"]
-        db_url = f"postgresql://{db_conf['username']}:{db_conf['password']}@{db_conf['host']}:{db_conf['port']}/{db_conf['database']}"
+        db_url = f"postgresql+psycopg2://{db_conf['username']}:{db_conf['password']}@{db_conf['host']}:{db_conf['port']}/{db_conf['database']}"
         engine = create_engine(db_url)
         return engine
     except Exception as e:
@@ -390,4 +390,5 @@ def main():
         menu[escolha]()
 
 if __name__ == "__main__":
+
     main()
